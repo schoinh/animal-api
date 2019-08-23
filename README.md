@@ -6,7 +6,40 @@
 
 ## Description
 
+This API supports full CRUD functionality for an animal shelter database. The database contains a list of all animals at the shelter, with attributes such as species, gender, name, and spayed/neutered status. (For full schema, please refer to the OpenAPI documentation at XXXXXXXX, setup instructions below.) 
 
+In addition to basic CRUD methods, the API allows:
+* Optional query parameters for species and/or gender
+* Pagination of data
+* Retrieving a randomly selected animal
+
+### **Basic CRUD**
+| Endpoint | HTTP Method | Description |
+| :------------- | :------------- | :------------- |
+| `api/animals` | GET | Return all animals |
+| `api/animals/{id}` | GET | Returns a specific animal |
+| `api/animals` | POST | Creates a new animal |
+| `api/animals/{id}` | PUT | Edits a specific animal |
+| `api/animals/{id}` | DELETE | Deletes a specific animal |
+
+### **Pagination and Random Animal**
+| Endpoint | HTTP Method | Description |
+| :------------- | :------------- | :------------- |
+| `api/animals/first` | GET | Returns first page of animals (3 animals per page) |
+| `api/animals/next` | GET | Returns next page of animals |
+| `api/animals/prev` | GET | Returns previous page of animals |
+| `api/animals/random` | GET | Returns a random animal from the database |
+
+### **Optional Query Parameters for `api/animals`**
+| Key | Possible Values |
+| :------------- | :------------- |
+| `species` | `Cat`, `Dog` |
+| `gender` | `Female`, `Male` |
+
+### **Example Call**
+```
+http://localhost:5000/api/animals/?species=Cat&gender=Male
+```
 
 ## Setup/Installation Requirements
 
@@ -28,10 +61,10 @@
     $ dotnet ef database update
     $ dotnet run
     ```
-7. The API is now up and running. For full documentation on using this API, refer to XXXXXXXXX.
+7. The API is now up and running. For full documentation on the database and using this API, refer to XXXXXXXXX.
 
 ## Known Bugs
-??????????
+None at this time.
 
 ## Technologies Used
 * C# / .NET Core
