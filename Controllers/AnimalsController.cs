@@ -13,12 +13,53 @@ namespace Animal_API.Controllers
     public class AnimalsController : ControllerBase
     {
         private Animal_APIContext _db = new Animal_APIContext();
+        private static int _currentPage = 1;
+        private static int _entriesPerPage = 3;
+        private static int _totalNumEntries;
+        private static int _totalPages;
+        private static int _prevPage;
+        private static int _nextPage;
 
-        // GET api/animals
+        // GET api/animals (first page)
         [HttpGet]
         public ActionResult<IEnumerable<Animal>> Get()
         {
-            return _db.Animals.ToList();
+            var allAnimals = _db.Animals.ToList();
+            _totalNumEntries = allAnimals.Count();
+            _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
+            return _db.Animals.Take(_entriesPerPage).ToList();
+        }
+
+        // GET api/animals/next (next page)
+        [HttpGet("next")]
+        public ActionResult<IEnumerable<Animal>> GetNextPage()
+        {
+            _nextPage = _currentPage < _totalPages ? _currentPage + 1 : _totalPages;
+            var output = _db.Animals
+                .Skip((_nextPage - 1) * _entriesPerPage)
+                .Take(_entriesPerPage)
+                .ToList();
+            if (_currentPage < _totalPages)
+            {
+                _currentPage += 1;
+            }
+            return output;
+        }
+
+        // GET api/animals/prev (previous page)
+        [HttpGet("prev")]
+        public ActionResult<IEnumerable<Animal>> GetPrevPage()
+        {
+            _prevPage = _currentPage > 1 ? _currentPage - 1 : 1;
+            var output = _db.Animals
+                .Skip((_prevPage - 1) * _entriesPerPage)
+                .Take(_entriesPerPage)
+                .ToList();
+            if (_currentPage > 1)
+            {
+                _currentPage -= 1;
+            }
+            return output;
         }
 
         // GET api/animals/5
@@ -42,6 +83,7 @@ namespace Animal_API.Controllers
         public void Put(int id, [FromBody] Animal animal)
         {
             animal.AnimalId = id;
+            animal.Age = Math.Round((((DateTime.Now - animal.Birthdate).TotalDays) / 365), 1);
             _db.Entry(animal).State = EntityState.Modified;
             _db.SaveChanges();
         }
