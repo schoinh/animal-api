@@ -38,7 +38,7 @@ In addition to basic CRUD methods, the API allows:
 
 ### **Example Call**
 ```
-http://localhost:5000/api/animals/?species=Cat&gender=Male
+http://localhost:5000/api/animals?species=Cat&gender=Male
 ```
 
 ## Setup/Installation Requirements
