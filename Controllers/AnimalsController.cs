@@ -27,21 +27,26 @@ namespace Animal_API.Controllers
         {
             if (species == null && gender == null)
             {
-                return _db.Animals.ToList();
+                return _db.Animals.OrderByDescending(x => x.IntakeDate).ToList();
             }
             else if (species == null)
             {
-                return _db.Animals.Where(x => x.Gender == gender).ToList();
+                return _db.Animals
+                    .Where(x => x.Gender == gender)
+                    .OrderByDescending(x => x.IntakeDate).ToList();
             }
             else if (gender == null)
             {
-                return _db.Animals.Where(x => x.Species == species).ToList();
+                return _db.Animals
+                    .Where(x => x.Species == species)
+                    .OrderByDescending(x => x.IntakeDate).ToList();
             }
             else
             {
                 return _db.Animals
                     .Where(x => x.Gender == gender)
-                    .Where(x => x.Species == species).ToList();
+                    .Where(x => x.Species == species)
+                    .OrderByDescending(x => x.IntakeDate).ToList();
             }
         }
 
@@ -52,7 +57,9 @@ namespace Animal_API.Controllers
             var allAnimals = _db.Animals.ToList();
             _totalNumEntries = allAnimals.Count();
             _totalPages = (int)Math.Ceiling(_totalNumEntries / (float)_entriesPerPage);
-            return _db.Animals.Take(_entriesPerPage).ToList();
+            return _db.Animals
+                .OrderByDescending(x => x.IntakeDate)
+                .Take(_entriesPerPage).ToList();
         }
 
         // GET api/animals/next (next page)
@@ -61,6 +68,7 @@ namespace Animal_API.Controllers
         {
             _nextPage = _currentPage < _totalPages ? _currentPage + 1 : _totalPages;
             var output = _db.Animals
+                .OrderByDescending(x => x.IntakeDate)
                 .Skip((_nextPage - 1) * _entriesPerPage)
                 .Take(_entriesPerPage)
                 .ToList();
@@ -77,6 +85,7 @@ namespace Animal_API.Controllers
         {
             _prevPage = _currentPage > 1 ? _currentPage - 1 : 1;
             var output = _db.Animals
+                .OrderByDescending(x => x.IntakeDate)
                 .Skip((_prevPage - 1) * _entriesPerPage)
                 .Take(_entriesPerPage)
                 .ToList();
