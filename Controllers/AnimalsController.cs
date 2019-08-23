@@ -19,6 +19,7 @@ namespace Animal_API.Controllers
         private static int _totalPages;
         private static int _prevPage;
         private static int _nextPage;
+        private Random _randomGenerator;
 
         // GET api/animals (first page)
         [HttpGet]
@@ -62,11 +63,22 @@ namespace Animal_API.Controllers
             return output;
         }
 
-        // GET api/animals/5
+        // GET api/animals/5 (retrieve a specific animal)
         [HttpGet("{id}")]
         public ActionResult<Animal> Get(int id)
         {
             return _db.Animals.FirstOrDefault(x => x.AnimalId == id);
+        }
+
+        // GET api/animals/random (retrieve a random animal)
+        [HttpGet("random")]
+        public ActionResult<Animal> GetRandom()
+        {
+            var allAnimals = _db.Animals.ToList();
+            _totalNumEntries = allAnimals.Count();
+            _randomGenerator = new Random();
+            int randomNum = _randomGenerator.Next(0, _totalNumEntries);
+            return allAnimals[randomNum];
         }
 
         // POST api/animals
