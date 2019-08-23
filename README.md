@@ -12,7 +12,7 @@ In addition to basic CRUD methods, the API allows:
 * Optional query parameters for species and/or gender
 * Pagination of data
 * Retrieving a randomly selected animal
-* Automatic calculation of an animal's `Age` when user creates an animal and inputs the `Birthdate`
+* Automatic calculation of an animal's `Age` (in decimal years) when user creates an animal and inputs the `Birthdate`
 
 ### **Basic CRUD**
 | Endpoint | HTTP Method | Description |
