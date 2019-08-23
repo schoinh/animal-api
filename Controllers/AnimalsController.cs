@@ -115,6 +115,25 @@ namespace Animal_API.Controllers
         }
 
         // POST api/animals
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     {
+        ///         "intakeDate": "2019-08-23",
+        ///         "name": "Caramel",
+        ///         "species": "Cat",
+        ///         "breed": "DSH",
+        ///         "birthdate": "2018-03-07",
+        ///         "gender": "Female",
+        ///         "color": "Brown tabby",
+        ///         "weight": 8.0,
+        ///         "description": "Funny cat, likes to eat",
+        ///         "spayedNeutered": true,
+        ///         "goodWithCats": true,
+        ///         "goodWithDogs": false,
+        ///         "goodWithKids": true
+        ///     }
+        /// </remarks>
         [HttpPost]
         public void Post([FromBody] Animal animal)
         {
