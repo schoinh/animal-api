@@ -10,11 +10,11 @@ namespace Animal_API.Models
         [Key]
         public int AnimalId { get; set; }
         public DateTime? IntakeDate { get; set; }
+        public string Name { get; set; }
         public string Species { get; set; }
         public string Breed { get; set; }
-        public string Name { get; set; }
         public DateTime Birthdate { get; set; }
-        public float? Age { get; set; }
+        public double? Age { get; set; }
         public string Gender { get; set; }
         public string Color { get; set; }
         public float? Weight { get; set; }

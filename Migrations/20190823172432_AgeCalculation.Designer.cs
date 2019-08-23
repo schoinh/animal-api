@@ -3,14 +3,16 @@ using System;
 using Animal_API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Animal_API.Migrations
 {
     [DbContext(typeof(Animal_APIContext))]
-    partial class Animal_APIContextModelSnapshot : ModelSnapshot
+    [Migration("20190823172432_AgeCalculation")]
+    partial class AgeCalculation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace Animal_API.Migrations
                     b.Property<int>("AnimalId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double?>("Age");
+                    b.Property<float?>("Age");
 
                     b.Property<DateTime>("Birthdate");
 
