@@ -14,6 +14,30 @@ In addition to basic CRUD methods, the API allows:
 * Retrieving a randomly selected animal
 * Automatic calculation of an animal's `Age` (in decimal years) when user creates an animal and inputs the `Birthdate`
 
+## Setup/Installation Requirements
+
+* This application requires MySQL.
+
+1. Clone this repository:
+    ```
+    $ git clone https://github.com/schoinh/animal-api.git
+    ```
+2. Open the database context file (animal-api/Models/Animal_APIContext.cs) and replace `EnvironmentVariables.MySQLKey` with a string containing your MySQL password (ex: `"abcd123"`).
+
+3. Log onto MySQL:
+    ```
+    $ mysql -u USERNAME -p PASSWORD
+    ```
+5. Navigate to the project directory (Animal-API). Restore dependencies, update your local database, and run the API:
+    ```
+    $ dotnet restore
+    $ dotnet ef database update
+    $ dotnet run
+    ```
+7. The API is now up and running. For full schema and a sample request body for POST, navigate to the Swagger documentation at http://localhost:5001.
+
+## Using the API
+
 ### **Basic CRUD**
 | Endpoint | HTTP Method | Description |
 | :------------- | :------------- | :------------- |
@@ -35,28 +59,6 @@ In addition to basic CRUD methods, the API allows:
 ```
 http://localhost:5000/api/animals?species=Cat&gender=Male
 ```
-
-## Setup/Installation Requirements
-
-* This application requires MySQL.
-
-1. Clone this repository:
-    ```
-    $ git clone https://github.com/schoinh/animal-api.git
-    ```
-2. Open the database context file (animal-api/Models/Animal_APIContext.cs) and replace `EnvironmentVariables.MySQLKey` with a string containing your MySQL password (ex: `"abcd123"`).
-
-3. Log onto MySQL:
-    ```
-    $ mysql -u USERNAME -p PASSWORD
-    ```
-5. Navigate to the project directory (Animal-API). Restore dependencies, update your local database, and run the API:
-    ```
-    $ dotnet restore
-    $ dotnet ef database update
-    $ dotnet run
-    ```
-7. The API is now up and running. For full documentation on the database and details about using this API, navigate to the Swagger documentation at http://localhost:5001.
 
 ## Known Bugs
 None at this time.
