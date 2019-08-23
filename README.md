@@ -6,17 +6,18 @@
 
 ## Description
 
-This API supports full CRUD functionality for an animal shelter database. The database contains a list of all animals at the shelter, with attributes such as species, gender, name, and spayed/neutered status. (For full schema, please refer to the OpenAPI documentation at XXXXXXXX, setup instructions below.) 
+This API supports full CRUD functionality for an animal shelter database. The database contains a list of all animals at the shelter, with attributes such as species, gender, name, and spayed/neutered status. (For full schema, please refer to the Swagger documentation. Setup instructions for it are below.) 
 
 In addition to basic CRUD methods, the API allows:
 * Optional query parameters for species and/or gender
 * Pagination of data
 * Retrieving a randomly selected animal
+* Automatic calculation of an animal's `Age` when user creates an animal and inputs the `Birthdate`
 
 ### **Basic CRUD**
 | Endpoint | HTTP Method | Description |
 | :------------- | :------------- | :------------- |
-| `api/animals` | GET | Return all animals |
+| `api/animals` | GET | Return all animals, sorted by intake date (newest first) |
 | `api/animals/{id}` | GET | Returns a specific animal |
 | `api/animals` | POST | Creates a new animal |
 | `api/animals/{id}` | PUT | Edits a specific animal |
@@ -25,10 +26,10 @@ In addition to basic CRUD methods, the API allows:
 ### **Pagination and Random Animal**
 | Endpoint | HTTP Method | Description |
 | :------------- | :------------- | :------------- |
-| `api/animals/first` | GET | Returns first page of animals (3 animals per page) |
+| `api/animals/first` | GET | Returns first page of animals (3 animals per page), sorted by intake date (newest first) |
 | `api/animals/next` | GET | Returns next page of animals |
 | `api/animals/prev` | GET | Returns previous page of animals |
-| `api/animals/random` | GET | Returns a random animal from the database |
+| `api/animals/random` | GET | Returns a random animal |
 
 ### **Optional Query Parameters for `api/animals`**
 | Key | Possible Values |
@@ -61,7 +62,7 @@ http://localhost:5000/api/animals?species=Cat&gender=Male
     $ dotnet ef database update
     $ dotnet run
     ```
-7. The API is now up and running. For full documentation on the database and using this API, refer to XXXXXXXXX.
+7. The API is now up and running. For full documentation on the database and details about using this API, navigate to the Swagger documentation at http://localhost:5001.
 
 ## Known Bugs
 None at this time.
@@ -71,7 +72,7 @@ None at this time.
 * ASP.NET Core MVC
 * LINQ
 * MySQL
-* OpenAPI
+* OpenAPI aka Swagger
 
 ## Support and contact details
 
