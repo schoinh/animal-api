@@ -45,7 +45,7 @@ namespace Animal_API.Controllers
             }
         }
 
-        // GET api/animals (first page)
+        // GET api/animals/first (first page)
         [HttpGet("first")]
         public ActionResult<IEnumerable<Animal>> GetFirstPage()
         {
