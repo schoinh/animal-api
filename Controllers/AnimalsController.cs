@@ -23,15 +23,25 @@ namespace Animal_API.Controllers
 
         // GET api/animals
         [HttpGet]
-        public ActionResult<IEnumerable<Animal>> GetAll([FromQuery] string species = null)
+        public ActionResult<IEnumerable<Animal>> GetAll(string species = null, string gender = null)
         {
-            if (species == null)
+            if (species == null && gender == null)
             {
                 return _db.Animals.ToList();
             }
-            else
+            else if (species == null)
+            {
+                return _db.Animals.Where(x => x.Gender == gender).ToList();
+            }
+            else if (gender == null)
             {
                 return _db.Animals.Where(x => x.Species == species).ToList();
+            }
+            else
+            {
+                return _db.Animals
+                    .Where(x => x.Gender == gender)
+                    .Where(x => x.Species == species).ToList();
             }
         }
 
