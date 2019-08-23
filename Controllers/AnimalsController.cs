@@ -21,9 +21,23 @@ namespace Animal_API.Controllers
         private static int _nextPage;
         private Random _randomGenerator;
 
-        // GET api/animals (first page)
+        // GET api/animals
         [HttpGet]
-        public ActionResult<IEnumerable<Animal>> Get()
+        public ActionResult<IEnumerable<Animal>> GetAll([FromQuery] string species = null)
+        {
+            if (species == null)
+            {
+                return _db.Animals.ToList();
+            }
+            else
+            {
+                return _db.Animals.Where(x => x.Species == species).ToList();
+            }
+        }
+
+        // GET api/animals (first page)
+        [HttpGet("first")]
+        public ActionResult<IEnumerable<Animal>> GetFirstPage()
         {
             var allAnimals = _db.Animals.ToList();
             _totalNumEntries = allAnimals.Count();
