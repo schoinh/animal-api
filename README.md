@@ -6,7 +6,7 @@
 
 ## Description
 
-This API supports full CRUD functionality for an animal shelter database. The database contains a list of all animals at the shelter, with attributes such as species, gender, name, and spayed/neutered status. (For full schema, please refer to the Swagger documentation. Setup instructions for it are below.) 
+This API supports full CRUD functionality for an animal shelter database. The database contains a list of all animals at the shelter, with attributes such as species, gender, name, and spayed/neutered status. (For full schema and a sample request body for POST, please refer to the Swagger documentation. Setup instructions for it are below.) 
 
 In addition to basic CRUD methods, the API allows:
 * Optional query parameters for species and/or gender
@@ -17,7 +17,7 @@ In addition to basic CRUD methods, the API allows:
 ### **Basic CRUD**
 | Endpoint | HTTP Method | Description |
 | :------------- | :------------- | :------------- |
-| `api/animals` | GET | Return all animals, sorted by intake date (newest first) |
+| `api/animals` | GET | Return all animals, sorted by intake date (newest first). Optional query parameters: `species`, `gender` |
 | `api/animals/{id}` | GET | Returns a specific animal |
 | `api/animals` | POST | Creates a new animal |
 | `api/animals/{id}` | PUT | Edits a specific animal |
@@ -30,12 +30,6 @@ In addition to basic CRUD methods, the API allows:
 | `api/animals/next` | GET | Returns next page of animals |
 | `api/animals/prev` | GET | Returns previous page of animals |
 | `api/animals/random` | GET | Returns a random animal |
-
-### **Optional Query Parameters for `api/animals`**
-| Key | Possible Values |
-| :------------- | :------------- |
-| `species` | `Cat`, `Dog` |
-| `gender` | `Female`, `Male` |
 
 ### **Example Call**
 ```
